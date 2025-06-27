@@ -3,464 +3,195 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>3-Day Hypertrophy Program</title>
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
+  <title>💪 GymFlow - 3-Day Hypertrophy Program</title>
+  
+  <!-- PWA Manifest -->
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#4f46e5">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="apple-mobile-web-app-title" content="GymFlow">
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzIiIGhlaWdodD0iMzIiIHZpZXdCb3g9IjAgMCAzMiAzMiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHJlY3Qgd2lkdGg9IjMyIiBoZWlnaHQ9IjMyIiByeD0iNCIgZmlsbD0idXJsKCNncmFkaWVudDAtNDEpIi8+CjxwYXRoIGQ9Ik05IDE2TDEzIDEyTDE3IDE2TTEzIDEyVjIxIiBzdHJva2U9IndoaXRlIiBzdHJva2Utd2lkdGg9IjIiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIvPgo8cGF0aCBkPSJNOSAxNkwxMyAyMEwxNyAxNk0xMyAyMFYxMSIgc3Ryb2tlPSJ3aGl0ZSIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiLz4KPGRlZnM+CjxsaW5lYXJHcmFkaWVudCBpZD0iZ3JhZGllbnQwLTQxIiB4MT0iMCIgeTE9IjAiIHgyPSIzMiIgeTI9IjMyIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+CjxzdG9wIHN0b3AtY29sb3I9IiM2NjdlZWEiLz4KPHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjNzY0YmEyIi8+CjwvbGluZWFyR3JhZGllbnQ+CjwvZGVmcz4KPC9zdmc+">
+  
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: {
+              50: '#f0f4ff',
+              100: '#e0e7ff',
+              500: '#6366f1',
+              600: '#4f46e5',
+              700: '#4338ca',
+              800: '#3730a3',
+              900: '#312e81',
+            },
+            accent: {
+              500: '#ec4899',
+              600: '#db2777',
+            },
+            dark: {
+              800: '#1f2937',
+              900: '#111827',
+            }
+          },
+          animation: {
+            'fade-in': 'fadeIn 0.5s ease-in-out',
+            'slide-up': 'slideUp 0.3s ease-out',
+            'bounce-in': 'bounceIn 0.6s ease-out',
+          }
+        }
+      }
     }
-
+  </script>
+  <style>
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    @keyframes slideUp {
+      from { transform: translateY(20px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+    @keyframes bounceIn {
+      0% { transform: scale(0.3); opacity: 0; }
+      50% { transform: scale(1.05); }
+      70% { transform: scale(0.9); }
+      100% { transform: scale(1); opacity: 1; }
+    }
     body {
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
       background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
       min-height: 100vh;
-      padding: 1rem;
-      color: #333;
     }
 
-    .container {
-      max-width: 800px;
-      margin: 0 auto;
-    }
-
-    .header {
-      text-align: center;
-      margin-bottom: 2rem;
-      padding: 2rem 1rem;
-      background: rgba(255, 255, 255, 0.95);
-      border-radius: 20px;
-      backdrop-filter: blur(10px);
-      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-    }
-
-    .header h1 {
-      font-size: 2rem;
-      font-weight: 700;
-      background: linear-gradient(135deg, #667eea, #764ba2);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      margin-bottom: 0.5rem;
-    }
-
-    .header p {
-      color: #666;
-      font-size: 1.1rem;
-    }
-
-    .workout-card {
-      background: rgba(255, 255, 255, 0.95);
-      border-radius: 20px;
-      margin-bottom: 1.5rem;
-      overflow: hidden;
-      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-      backdrop-filter: blur(10px);
-    }
-
-    .workout-header {
-      background: linear-gradient(135deg, #667eea, #764ba2);
-      color: white;
-      padding: 1.5rem;
-      text-align: center;
-    }
-
-    .workout-header h2 {
-      font-size: 1.3rem;
-      font-weight: 600;
-      margin-bottom: 0.5rem;
-    }
-
-    .workout-subtitle {
-      opacity: 0.9;
-      font-size: 0.9rem;
-    }
-
-    .exercise-list {
-      padding: 0;
-    }
-
-    .exercise-item {
-      display: flex;
-      flex-direction: column;
-      padding: 1.2rem;
-      border-bottom: 1px solid #f0f0f0;
-      transition: all 0.3s ease;
-    }
-
-    .exercise-item:last-child {
-      border-bottom: none;
-    }
-
-    .exercise-item:hover {
-      background: #f8f9ff;
-      transform: translateX(4px);
-    }
-
-    .exercise-actions {
-      display: flex;
-      gap: 0.5rem;
-      margin-top: 1rem;
-      flex-wrap: wrap;
-    }
-
-    .action-btn {
-      background: linear-gradient(135deg, #667eea, #764ba2);
-      color: white;
-      border: none;
-      padding: 0.5rem 1rem;
-      border-radius: 20px;
-      font-size: 0.8rem;
-      font-weight: 500;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      text-decoration: none;
-      display: inline-block;
-      text-align: center;
-    }
-
-    .action-btn:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
-    }
-
-    .action-btn.secondary {
-      background: linear-gradient(135deg, #28a745, #20c997);
-    }
-
-    .action-btn.history {
-      background: linear-gradient(135deg, #fd7e14, #e83e8c);
-    }
-
-    .log-form {
-      background: #f8f9ff;
-      padding: 1rem;
-      border-radius: 10px;
-      margin-top: 1rem;
-      display: none;
-    }
-
-    .log-form.active {
-      display: block;
-    }
-
-    .form-row {
-      display: flex;
-      gap: 0.5rem;
-      margin-bottom: 0.5rem;
-      align-items: center;
-    }
-
-    .form-row input {
-      padding: 0.5rem;
-      border: 1px solid #ddd;
-      border-radius: 8px;
-      font-size: 0.9rem;
-      width: 80px;
-    }
-
-    .form-row label {
-      font-size: 0.8rem;
-      color: #666;
-      min-width: 50px;
-    }
-
-    .form-row textarea {
-      padding: 0.5rem;
-      border: 1px solid #ddd;
-      border-radius: 8px;
-      font-size: 0.9rem;
-      resize: vertical;
-      min-height: 60px;
-      flex: 1;
-    }
-
-    .form-actions {
-      display: flex;
-      gap: 0.5rem;
-      margin-top: 0.5rem;
-    }
-
-    .modal {
-      display: none;
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0, 0, 0, 0.5);
-      z-index: 1000;
-    }
-
-    .modal.active {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .modal-content {
-      background: white;
-      padding: 2rem;
-      border-radius: 15px;
-      max-width: 600px;
-      max-height: 80vh;
-      overflow-y: auto;
-      margin: 1rem;
-      position: relative;
-    }
-
-    .modal-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 1rem;
-      padding-bottom: 1rem;
-      border-bottom: 1px solid #eee;
-    }
-
-    .modal-title {
-      font-size: 1.2rem;
-      font-weight: 600;
-      color: #333;
-    }
-
-    .close-btn {
-      background: none;
-      border: none;
-      font-size: 1.5rem;
-      cursor: pointer;
-      color: #666;
-      padding: 0;
-      width: 30px;
-      height: 30px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      border-radius: 50%;
-    }
-
-    .close-btn:hover {
-      background: #f5f5f5;
-    }
-
-    .history-session {
-      background: #f8f9ff;
-      padding: 1rem;
-      border-radius: 10px;
-      margin-bottom: 1rem;
-      border-left: 4px solid #667eea;
-    }
-
-    .session-date {
-      font-weight: 600;
-      color: #333;
-      margin-bottom: 0.5rem;
-    }
-
-    .session-sets {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
-      gap: 0.5rem;
-      margin-bottom: 0.5rem;
-    }
-
-    .set-info {
-      background: white;
-      padding: 0.5rem;
-      border-radius: 8px;
-      text-align: center;
-      font-size: 0.8rem;
-    }
-
-    .session-notes {
-      font-style: italic;
-      color: #666;
-      font-size: 0.9rem;
-    }
-
-    .last-trained-info {
-      background: rgba(102, 126, 234, 0.1);
-      padding: 0.5rem;
-      border-radius: 8px;
-      margin-top: 0.5rem;
-      font-size: 0.85rem;
-      color: #667eea;
-    }
-
-    .exercise-name {
-      font-weight: 600;
-      font-size: 1.1rem;
-      color: #333;
-      margin-bottom: 0.5rem;
-    }
-
-    .exercise-details {
-      display: grid;
-      grid-template-columns: 1fr 1fr 1fr;
-      gap: 0.8rem;
-      margin-top: 0.5rem;
-    }
-
-    .detail-item {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      text-align: center;
-    }
-
-    .detail-label {
-      font-size: 0.75rem;
-      color: #888;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-      margin-bottom: 0.2rem;
-      font-weight: 500;
-    }
-
-    .detail-value {
-      font-weight: 600;
-      color: #333;
-      font-size: 0.9rem;
-    }
-
-    .exercise-link {
-      background: linear-gradient(135deg, #667eea, #764ba2);
-      color: white;
-      text-decoration: none;
-      padding: 0.5rem 1rem;
-      border-radius: 25px;
-      font-size: 0.8rem;
-      font-weight: 500;
-      transition: all 0.3s ease;
-      text-align: center;
-      margin-top: 0.5rem;
-      display: inline-block;
-    }
-
-    .exercise-link:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
-    }
-
-    .stats-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-      gap: 1rem;
-      margin-bottom: 2rem;
-    }
-
-    .stat-card {
-      background: rgba(255, 255, 255, 0.95);
-      padding: 1.5rem;
-      border-radius: 15px;
-      text-align: center;
-      backdrop-filter: blur(10px);
-      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
-    }
-
-    .stat-number {
-      font-size: 2rem;
-      font-weight: 700;
-      background: linear-gradient(135deg, #667eea, #764ba2);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-    }
-
-    .stat-label {
-      color: #666;
-      font-size: 0.9rem;
-      margin-top: 0.5rem;
-    }
-
-    .loading {
-      text-align: center;
-      padding: 2rem;
-      color: white;
-      font-size: 1.2rem;
-    }
-
-    .error {
-      background: rgba(255, 99, 99, 0.9);
-      color: white;
-      padding: 1rem;
-      border-radius: 10px;
-      margin: 1rem 0;
-      text-align: center;
-    }
-
-    @media (max-width: 480px) {
-      body {
-        padding: 0.5rem;
-      }
-      
-      .header h1 {
-        font-size: 1.5rem;
-      }
-      
-      .header p {
-        font-size: 1rem;
-      }
-      
-      .exercise-details {
-        grid-template-columns: 1fr;
-        gap: 0.5rem;
-      }
-      
-      .detail-item {
-        flex-direction: row;
-        justify-content: space-between;
-        padding: 0.5rem;
-        background: #f8f9ff;
-        border-radius: 8px;
-      }
-      
-      .workout-header {
-        padding: 1rem;
-      }
-      
-      .workout-header h2 {
-        font-size: 1.1rem;
-      }
-    }
   </style>
 </head>
-<body>
-  <div class="container">
-    <div class="header">
-      <h1>💪 3-Day Hypertrophy Program</h1>
-      <p>Build muscle with this structured workout plan</p>
-    </div>
-
-    <div class="stats-grid">
-      <div class="stat-card">
-        <div class="stat-number" id="days-count">3</div>
-        <div class="stat-label">Days per Week</div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-number" id="exercises-count">-</div>
-        <div class="stat-label">Total Exercises</div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-number">45-60</div>
-        <div class="stat-label">Minutes per Session</div>
+<body class="bg-gradient-to-br from-indigo-600 via-purple-600 to-blue-700 min-h-screen">
+  <!-- Navigation Header -->
+  <nav class="sticky top-0 z-50 bg-white/10 backdrop-blur-md border-b border-white/20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16">
+        <div class="flex items-center space-x-3">
+          <div class="bg-gradient-to-r from-pink-500 to-indigo-500 p-2 rounded-xl">
+            <i class="fas fa-dumbbell text-white text-xl"></i>
+          </div>
+          <div>
+            <h1 class="text-white font-bold text-lg">GymFlow</h1>
+            <p class="text-white/70 text-xs">Hypertrophy Program</p>
+          </div>
+        </div>
+        <button id="menu-toggle" class="md:hidden text-white">
+          <i class="fas fa-bars text-xl"></i>
+        </button>
       </div>
     </div>
+  </nav>
 
-    <div id="loading" class="loading">Loading workout data...</div>
-    <div id="error" class="error" style="display: none;"></div>
-    <div id="workout-container"></div>
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+    <!-- Welcome Section -->
+    <div class="text-center mb-8 animate-fade-in">
+      <div class="bg-white/10 backdrop-blur-md rounded-3xl p-6 border border-white/20 shadow-2xl">
+        <div class="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-r from-pink-500 to-indigo-500 rounded-full mb-4">
+          <i class="fas fa-fire text-white text-2xl"></i>
+        </div>
+        <h1 class="text-3xl md:text-4xl font-bold text-white mb-2">
+          Build Your Best Self
+        </h1>
+        <p class="text-white/80 text-lg">
+          Transform your physique with our structured 3-day hypertrophy program
+        </p>
+      </div>
+    </div>
+
+    <!-- Stats Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8 animate-slide-up">
+      <div class="bg-white/10 backdrop-blur-md rounded-2xl p-6 border border-white/20 text-center">
+        <div class="inline-flex items-center justify-center w-12 h-12 bg-gradient-to-r from-green-400 to-blue-500 rounded-full mb-3">
+          <i class="fas fa-calendar-week text-white"></i>
+        </div>
+        <div class="text-3xl font-bold text-white mb-1" id="days-count">3</div>
+        <div class="text-white/70 text-sm">Days per Week</div>
+      </div>
+      <div class="bg-white/10 backdrop-blur-md rounded-2xl p-6 border border-white/20 text-center">
+        <div class="inline-flex items-center justify-center w-12 h-12 bg-gradient-to-r from-purple-400 to-pink-500 rounded-full mb-3">
+          <i class="fas fa-list-check text-white"></i>
+        </div>
+        <div class="text-3xl font-bold text-white mb-1" id="exercises-count">-</div>
+        <div class="text-white/70 text-sm">Total Exercises</div>
+      </div>
+      <div class="bg-white/10 backdrop-blur-md rounded-2xl p-6 border border-white/20 text-center">
+        <div class="inline-flex items-center justify-center w-12 h-12 bg-gradient-to-r from-orange-400 to-red-500 rounded-full mb-3">
+          <i class="fas fa-clock text-white"></i>
+        </div>
+        <div class="text-3xl font-bold text-white mb-1">45-60</div>
+        <div class="text-white/70 text-sm">Minutes per Session</div>
+      </div>
+    </div>
+
+    <!-- Loading State -->
+    <div id="loading" class="text-center py-12">
+      <div class="inline-flex items-center justify-center w-16 h-16 bg-white/10 rounded-full mb-4">
+        <div class="animate-spin rounded-full h-8 w-8 border-b-2 border-white"></div>
+      </div>
+      <p class="text-white text-lg">Loading your workout plan...</p>
+    </div>
+
+    <!-- Error State -->
+    <div id="error" class="hidden bg-red-500/20 backdrop-blur-md border border-red-500/30 rounded-2xl p-6 mb-6">
+      <div class="flex items-center space-x-3">
+        <i class="fas fa-exclamation-triangle text-red-400 text-xl"></i>
+        <div class="text-red-100"></div>
+      </div>
+    </div>
+
+    <!-- Workout Container -->
+    <div id="workout-container" class="space-y-6"></div>
+  </div>
+
+  <!-- Floating Action Button -->
+  <div class="fixed bottom-6 right-6 z-40">
+    <button id="fab" class="w-14 h-14 bg-gradient-to-r from-pink-500 to-indigo-600 rounded-full shadow-2xl flex items-center justify-center text-white hover:scale-110 transform transition-all duration-300">
+      <i class="fas fa-plus text-xl"></i>
+    </button>
+    
+    <!-- FAB Menu (hidden by default) -->
+    <div id="fab-menu" class="absolute bottom-16 right-0 space-y-3 opacity-0 pointer-events-none transition-all duration-300">
+      <button onclick="scrollToTop()" class="w-12 h-12 bg-blue-500 rounded-full shadow-lg flex items-center justify-center text-white hover:scale-110 transform transition-all duration-300">
+        <i class="fas fa-arrow-up"></i>
+      </button>
+      <button onclick="loadWorkoutData()" class="w-12 h-12 bg-green-500 rounded-full shadow-lg flex items-center justify-center text-white hover:scale-110 transform transition-all duration-300">
+        <i class="fas fa-sync-alt"></i>
+      </button>
+    </div>
   </div>
 
   <!-- History Modal -->
-  <div id="history-modal" class="modal">
-    <div class="modal-content">
-      <div class="modal-header">
-        <div class="modal-title" id="history-title">Exercise History</div>
-        <button class="close-btn" onclick="closeHistoryModal()">&times;</button>
-      </div>
-      <div id="history-content">
-        <div class="loading">Loading history...</div>
+  <div id="history-modal" class="fixed inset-0 z-50 hidden">
+    <div class="absolute inset-0 bg-black/50 backdrop-blur-sm"></div>
+    <div class="relative flex items-center justify-center min-h-screen p-4">
+      <div class="bg-white rounded-3xl max-w-2xl w-full max-h-[80vh] overflow-hidden shadow-2xl">
+        <div class="bg-gradient-to-r from-indigo-500 to-purple-600 p-6 text-white">
+          <div class="flex items-center justify-between">
+            <div class="flex items-center space-x-3">
+              <i class="fas fa-history text-xl"></i>
+              <h2 class="text-xl font-bold" id="history-title">Exercise History</h2>
+            </div>
+            <button class="text-white/70 hover:text-white transition-colors" onclick="closeHistoryModal()">
+              <i class="fas fa-times text-xl"></i>
+            </button>
+          </div>
+        </div>
+        <div id="history-content" class="p-6 overflow-y-auto max-h-96">
+          <div class="text-center py-8">
+            <div class="animate-spin rounded-full h-8 w-8 border-b-2 border-indigo-500 mx-auto mb-4"></div>
+            <p class="text-gray-600">Loading history...</p>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -484,64 +215,187 @@
       return grouped;
     }
 
-    // Function to create exercise HTML
+    // Function to create loading skeleton
+    function createLoadingSkeleton() {
+      return `
+        <div class="space-y-6">
+          ${[1,2,3].map(() => `
+            <div class="bg-white/10 backdrop-blur-md rounded-3xl overflow-hidden border border-white/20 animate-pulse">
+              <div class="bg-gradient-to-r from-gray-300 to-gray-400 h-24"></div>
+              <div class="p-6 space-y-4">
+                ${[1,2,3,4].map(() => `
+                  <div class="bg-white rounded-2xl p-6">
+                    <div class="h-6 bg-gray-200 rounded mb-4"></div>
+                    <div class="grid grid-cols-2 gap-4 mb-4">
+                      <div class="h-16 bg-gray-100 rounded-xl"></div>
+                      <div class="h-16 bg-gray-100 rounded-xl"></div>
+                    </div>
+                    <div class="h-8 bg-gray-100 rounded-xl mb-4"></div>
+                    <div class="flex gap-2">
+                      <div class="flex-1 h-10 bg-gray-100 rounded-xl"></div>
+                      <div class="flex-1 h-10 bg-gray-100 rounded-xl"></div>
+                      <div class="w-16 h-10 bg-gray-100 rounded-xl"></div>
+                    </div>
+                  </div>
+                `).join('')}
+              </div>
+            </div>
+          `).join('')}
+        </div>
+      `;
+    }
+
+    // Function to create exercise HTML with new modern design
     function createExerciseHTML(exercise) {
       const lastTrainedInfo = exercise.last_trained 
         ? `Last trained: ${new Date(exercise.last_trained).toLocaleDateString()} (${exercise.last_sets_count} sets)`
         : 'Never trained';
       
       return `
-        <div class="exercise-item">
-          <div class="exercise-name">${exercise.exercise_name}</div>
-          <div class="exercise-details">
-            <div class="detail-item">
-              <div class="detail-label">Sets × Reps</div>
-              <div class="detail-value">${exercise.sets_reps}</div>
-            </div>
-            <div class="detail-item">
-              <div class="detail-label">Rest</div>
-              <div class="detail-value">${exercise.rest_time}</div>
-            </div>
-            <div class="detail-item">
-              <a href="${exercise.exercise_link}" class="exercise-link" target="_blank">View Exercise</a>
+        <div class="bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 border border-gray-100">
+          <div class="flex items-start justify-between mb-4">
+            <div class="flex-1">
+              <h3 class="text-xl font-bold text-gray-800 mb-2 flex items-center">
+                <i class="fas fa-dumbbell text-indigo-500 mr-2"></i>
+                ${exercise.exercise_name}
+              </h3>
+              <div class="grid grid-cols-2 gap-4 mb-4">
+                <div class="bg-gradient-to-r from-indigo-50 to-purple-50 rounded-xl p-3 text-center">
+                  <div class="text-xs font-semibold text-indigo-600 uppercase tracking-wide mb-1">Sets × Reps</div>
+                  <div class="text-lg font-bold text-gray-800">${exercise.sets_reps}</div>
+                </div>
+                <div class="bg-gradient-to-r from-green-50 to-blue-50 rounded-xl p-3 text-center">
+                  <div class="text-xs font-semibold text-green-600 uppercase tracking-wide mb-1">Rest Time</div>
+                  <div class="text-lg font-bold text-gray-800">${exercise.rest_time}</div>
+                </div>
+              </div>
             </div>
           </div>
-          <div class="last-trained-info">${lastTrainedInfo}</div>
-          <div class="exercise-actions">
-            <button class="action-btn" onclick="toggleLogForm('${exercise.id}')">Log Rep</button>
-            <button class="action-btn history" onclick="viewHistory('${exercise.id}')">View History</button>
+          
+          <div class="bg-indigo-50 rounded-xl p-3 mb-4">
+            <div class="flex items-center text-sm text-indigo-700">
+              <i class="fas fa-history mr-2"></i>
+              ${lastTrainedInfo}
+            </div>
           </div>
-          <div class="log-form" id="log-form-${exercise.id}">
-            <div class="form-row">
-              <label>Reps:</label>
-              <input type="number" id="reps-${exercise.id}" placeholder="8" min="1" max="50">
-              <label>Weight (kg):</label>
-              <input type="number" id="weight-${exercise.id}" placeholder="50" min="0" step="0.5">
+
+          <div class="flex flex-wrap gap-2 mb-4">
+            <button 
+              onclick="toggleLogForm('${exercise.id}')" 
+              class="flex-1 bg-gradient-to-r from-indigo-500 to-purple-600 text-white px-4 py-2 rounded-xl font-semibold hover:from-indigo-600 hover:to-purple-700 transition-all duration-300 flex items-center justify-center space-x-2"
+            >
+              <i class="fas fa-plus"></i>
+              <span>Log Rep</span>
+            </button>
+            <button 
+              onclick="viewHistory('${exercise.id}')" 
+              class="flex-1 bg-gradient-to-r from-orange-500 to-pink-600 text-white px-4 py-2 rounded-xl font-semibold hover:from-orange-600 hover:to-pink-700 transition-all duration-300 flex items-center justify-center space-x-2"
+            >
+              <i class="fas fa-chart-line"></i>
+              <span>History</span>
+            </button>
+            <a 
+              href="${exercise.exercise_link}" 
+              target="_blank" 
+              class="bg-gradient-to-r from-gray-600 to-gray-700 text-white px-4 py-2 rounded-xl font-semibold hover:from-gray-700 hover:to-gray-800 transition-all duration-300 flex items-center justify-center space-x-2"
+            >
+              <i class="fas fa-external-link-alt"></i>
+              <span>View</span>
+            </a>
+          </div>
+
+          <div class="log-form hidden bg-gray-50 rounded-xl p-4 border-2 border-dashed border-gray-200" id="log-form-${exercise.id}">
+            <h4 class="font-semibold text-gray-800 mb-3 flex items-center">
+              <i class="fas fa-edit text-indigo-500 mr-2"></i>
+              Log Your Set
+            </h4>
+            <div class="grid grid-cols-2 gap-3 mb-3">
+              <div>
+                <label class="block text-sm font-medium text-gray-700 mb-1">Reps</label>
+                <input 
+                  type="number" 
+                  id="reps-${exercise.id}" 
+                  placeholder="8" 
+                  min="1" 
+                  max="50"
+                  class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
+                >
+              </div>
+              <div>
+                <label class="block text-sm font-medium text-gray-700 mb-1">Weight (kg)</label>
+                <input 
+                  type="number" 
+                  id="weight-${exercise.id}" 
+                  placeholder="50" 
+                  min="0" 
+                  step="0.5"
+                  class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
+                >
+              </div>
             </div>
-            <div class="form-row">
-              <label>Notes:</label>
-              <textarea id="notes-${exercise.id}" placeholder="Optional notes..."></textarea>
+            <div class="mb-3">
+              <label class="block text-sm font-medium text-gray-700 mb-1">Notes (Optional)</label>
+              <textarea 
+                id="notes-${exercise.id}" 
+                placeholder="How did it feel? Any observations..."
+                class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent resize-none"
+                rows="2"
+              ></textarea>
             </div>
-            <div class="form-actions">
-              <button class="action-btn" onclick="logSet('${exercise.id}')">Log Set</button>
-              <button class="action-btn secondary" onclick="toggleLogForm('${exercise.id}')">Cancel</button>
+            <div class="flex gap-2">
+              <button 
+                onclick="logSet('${exercise.id}')" 
+                class="flex-1 bg-gradient-to-r from-green-500 to-emerald-600 text-white px-4 py-2 rounded-lg font-semibold hover:from-green-600 hover:to-emerald-700 transition-all duration-300 flex items-center justify-center space-x-2"
+              >
+                <i class="fas fa-check"></i>
+                <span>Save Set</span>
+              </button>
+              <button 
+                onclick="toggleLogForm('${exercise.id}')" 
+                class="px-4 py-2 bg-gray-200 text-gray-700 rounded-lg font-semibold hover:bg-gray-300 transition-colors duration-300"
+              >
+                Cancel
+              </button>
             </div>
           </div>
         </div>
       `;
     }
 
-    // Function to create workout day HTML
+    // Function to create workout day HTML with new design
     function createWorkoutDayHTML(dayNumber, dayData) {
       const exercisesHTML = dayData.exercises.map(createExerciseHTML).join('');
       
+      // Define gradient colors for each day
+      const dayGradients = {
+        1: 'from-red-500 to-pink-600',
+        2: 'from-blue-500 to-indigo-600', 
+        3: 'from-green-500 to-emerald-600'
+      };
+      
+      const gradient = dayGradients[dayNumber] || 'from-indigo-500 to-purple-600';
+      
       return `
-        <div class="workout-card">
-          <div class="workout-header">
-            <h2>${dayData.day_emoji} Day ${dayNumber} – ${dayData.day_name}</h2>
-            <div class="workout-subtitle">${dayData.day_subtitle}</div>
+        <div class="bg-white/10 backdrop-blur-md rounded-3xl overflow-hidden border border-white/20 shadow-2xl animate-bounce-in">
+          <div class="bg-gradient-to-r ${gradient} p-6 text-white">
+            <div class="flex items-center space-x-3 mb-2">
+              <div class="text-4xl">${dayData.day_emoji}</div>
+              <div>
+                <h2 class="text-2xl font-bold">Day ${dayNumber} – ${dayData.day_name}</h2>
+                <p class="text-white/90">${dayData.day_subtitle}</p>
+              </div>
+            </div>
+            <div class="flex items-center justify-between mt-4">
+              <div class="text-sm bg-white/20 px-3 py-1 rounded-full">
+                ${dayData.exercises.length} exercises
+              </div>
+              <div class="text-sm bg-white/20 px-3 py-1 rounded-full">
+                <i class="fas fa-fire mr-1"></i>
+                Muscle Building
+              </div>
+            </div>
           </div>
-          <div class="exercise-list">
+          <div class="p-6 space-y-4">
             ${exercisesHTML}
           </div>
         </div>
@@ -552,6 +406,11 @@
     async function loadWorkoutData() {
       try {
         console.log('Attempting to fetch workout data...');
+        
+        // Show loading skeleton
+        const workoutContainer = document.getElementById('workout-container');
+        workoutContainer.innerHTML = createLoadingSkeleton();
+        document.getElementById('loading').style.display = 'none';
         
         // Try to avoid CORS preflight by using a simple request
         // We'll append the token as a query parameter instead of using Authorization header
@@ -583,21 +442,35 @@
         const groupedData = groupExercisesByDay(exercises);
         console.log('Grouped data:', groupedData);
         
-        // Update stats
+        // Update stats with animation
         const totalExercises = exercises.length;
         const uniqueDays = Object.keys(groupedData).length;
         
-        document.getElementById('exercises-count').textContent = totalExercises;
-        document.getElementById('days-count').textContent = uniqueDays;
+        animateCounter('exercises-count', totalExercises);
+        animateCounter('days-count', uniqueDays);
         
         // Generate workout HTML
-        const workoutContainer = document.getElementById('workout-container');
         const workoutHTML = Object.keys(groupedData)
           .sort((a, b) => parseInt(a) - parseInt(b))
           .map(day => createWorkoutDayHTML(day, groupedData[day]))
           .join('');
         
-        workoutContainer.innerHTML = workoutHTML;
+        // Add staggered animation to workout cards
+        setTimeout(() => {
+          workoutContainer.innerHTML = workoutHTML;
+          
+          // Animate cards in
+          const cards = workoutContainer.querySelectorAll('.bg-white\\/10');
+          cards.forEach((card, index) => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(20px)';
+            setTimeout(() => {
+              card.style.transition = 'all 0.5s ease-out';
+              card.style.opacity = '1';
+              card.style.transform = 'translateY(0)';
+            }, index * 200);
+          });
+        }, 1000);
         
         // Hide loading message
         document.getElementById('loading').style.display = 'none';
@@ -608,18 +481,43 @@
         console.error('Error loading workout data:', error);
         document.getElementById('loading').style.display = 'none';
         const errorDiv = document.getElementById('error');
-        errorDiv.textContent = `Error loading workout data: ${error.message}. Please check your internet connection and try again.`;
-        errorDiv.style.display = 'block';
+        errorDiv.querySelector('div').textContent = `Error loading workout data: ${error.message}. Please check your internet connection and try again.`;
+        errorDiv.classList.remove('hidden');
+        
+        // Clear skeleton on error
+        document.getElementById('workout-container').innerHTML = '';
       }
+    }
+
+    // Function to animate counters
+    function animateCounter(elementId, targetValue) {
+      const element = document.getElementById(elementId);
+      const startValue = parseInt(element.textContent) || 0;
+      const duration = 1000;
+      const startTime = performance.now();
+      
+      function updateCounter(currentTime) {
+        const elapsed = currentTime - startTime;
+        const progress = Math.min(elapsed / duration, 1);
+        
+        const currentValue = Math.floor(startValue + (targetValue - startValue) * progress);
+        element.textContent = currentValue;
+        
+        if (progress < 1) {
+          requestAnimationFrame(updateCounter);
+        }
+      }
+      
+      requestAnimationFrame(updateCounter);
     }
 
     // Function to toggle log form visibility
     function toggleLogForm(exerciseId) {
       const logForm = document.getElementById(`log-form-${exerciseId}`);
-      logForm.classList.toggle('active');
+      logForm.classList.toggle('hidden');
     }
 
-    // Function to log a set
+    // Function to log a set with enhanced UI feedback
     async function logSet(exerciseId) {
       const repsInput = document.getElementById(`reps-${exerciseId}`);
       const weightInput = document.getElementById(`weight-${exerciseId}`);
@@ -630,9 +528,15 @@
       const notes = notesInput.value.trim();
       
       if (!reps || reps < 1) {
-        alert('Please enter a valid number of reps (1 or more)');
+        showNotification('Please enter a valid number of reps (1 or more)', 'error');
         return;
       }
+      
+      // Show loading state
+      const logButton = document.querySelector(`#log-form-${exerciseId} button[onclick="logSet('${exerciseId}')"]`);
+      const originalHTML = logButton.innerHTML;
+      logButton.innerHTML = '<i class="fas fa-spinner fa-spin"></i> <span>Saving...</span>';
+      logButton.disabled = true;
       
       try {
         const response = await fetch('https://yazan-gym-api.dialakattan22.workers.dev/training/log', {
@@ -666,27 +570,64 @@
         // Hide form
         toggleLogForm(exerciseId);
         
-        // Show success message
-        alert('Set logged successfully! 💪');
+        // Show success notification
+        showNotification('Set logged successfully! 💪', 'success');
         
         // Reload workout data to update last trained info
         loadWorkoutData();
         
       } catch (error) {
         console.error('Error logging set:', error);
-        alert(`Error logging set: ${error.message}`);
+        showNotification(`Error logging set: ${error.message}`, 'error');
+      } finally {
+        // Restore button state
+        logButton.innerHTML = originalHTML;
+        logButton.disabled = false;
       }
     }
 
-    // Function to view exercise history
+    // Function to show notifications
+    function showNotification(message, type = 'info') {
+      const notification = document.createElement('div');
+      notification.className = `fixed top-4 right-4 z-50 p-4 rounded-2xl text-white font-semibold shadow-2xl transform transition-all duration-300 ${
+        type === 'success' ? 'bg-gradient-to-r from-green-500 to-emerald-600' : 
+        type === 'error' ? 'bg-gradient-to-r from-red-500 to-pink-600' : 
+        'bg-gradient-to-r from-blue-500 to-indigo-600'
+      }`;
+      
+      notification.innerHTML = `
+        <div class="flex items-center space-x-2">
+          <i class="fas ${type === 'success' ? 'fa-check-circle' : type === 'error' ? 'fa-exclamation-circle' : 'fa-info-circle'}"></i>
+          <span>${message}</span>
+        </div>
+      `;
+      
+      document.body.appendChild(notification);
+      
+      // Animate in
+      setTimeout(() => notification.style.transform = 'translateY(0)', 100);
+      
+      // Remove after 3 seconds
+      setTimeout(() => {
+        notification.style.transform = 'translateY(-100px)';
+        setTimeout(() => document.body.removeChild(notification), 300);
+      }, 3000);
+    }
+
+    // Function to view exercise history with enhanced UI
     async function viewHistory(exerciseId) {
       const modal = document.getElementById('history-modal');
       const title = document.getElementById('history-title');
       const content = document.getElementById('history-content');
       
-      modal.classList.add('active');
+      modal.classList.remove('hidden');
       title.textContent = 'Exercise History';
-      content.innerHTML = '<div class="loading">Loading history...</div>';
+      content.innerHTML = `
+        <div class="text-center py-8">
+          <div class="animate-spin rounded-full h-8 w-8 border-b-2 border-indigo-500 mx-auto mb-4"></div>
+          <p class="text-gray-600">Loading history...</p>
+        </div>
+      `;
       
       try {
         const response = await fetch(`https://yazan-gym-api.dialakattan22.workers.dev/training/history?exercise_id=${exerciseId}&user_id=yazan&token=yazan-gym-2025-secure-token`);
@@ -702,7 +643,15 @@
         title.textContent = `${historyData.exercise_info.exercise_name} History`;
         
         if (historyData.total_sessions === 0) {
-          content.innerHTML = '<p>No training sessions recorded for this exercise yet.</p>';
+          content.innerHTML = `
+            <div class="text-center py-12">
+              <div class="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                <i class="fas fa-chart-line text-gray-400 text-2xl"></i>
+              </div>
+              <h3 class="text-lg font-semibold text-gray-700 mb-2">No History Yet</h3>
+              <p class="text-gray-500">Start logging your workouts to see your progress!</p>
+            </div>
+          `;
           return;
         }
         
@@ -715,36 +664,63 @@
           });
           
           const setsHTML = session.sets.map(set => `
-            <div class="set-info">
-              Set ${set.set_number}<br>
-              ${set.reps} reps<br>
-              ${set.weight_kg}kg
+            <div class="bg-white rounded-xl p-3 text-center border border-gray-200 shadow-sm">
+              <div class="text-xs text-gray-500 mb-1">Set ${set.set_number}</div>
+              <div class="font-bold text-gray-800">${set.reps} reps</div>
+              <div class="text-sm text-indigo-600 font-semibold">${set.weight_kg}kg</div>
             </div>
           `).join('');
           
           return `
-            <div class="history-session">
-              <div class="session-date">${sessionDate}</div>
-              <div class="session-sets">${setsHTML}</div>
-              ${session.notes ? `<div class="session-notes">"${session.notes}"</div>` : ''}
+            <div class="bg-gradient-to-r from-indigo-50 to-purple-50 rounded-2xl p-4 mb-4 border border-indigo-100">
+              <div class="flex items-center justify-between mb-3">
+                <div class="font-semibold text-gray-800">${sessionDate}</div>
+                <div class="bg-indigo-500 text-white px-3 py-1 rounded-full text-xs font-semibold">
+                  ${session.sets.length} sets
+                </div>
+              </div>
+              <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-2 mb-3">
+                ${setsHTML}
+              </div>
+              ${session.notes ? `
+                <div class="bg-white rounded-xl p-3 border border-gray-200">
+                  <div class="text-xs text-gray-500 mb-1">Notes</div>
+                  <div class="text-sm text-gray-700 italic">"${session.notes}"</div>
+                </div>
+              ` : ''}
             </div>
           `;
         }).join('');
         
         content.innerHTML = `
-          <p><strong>Total Sessions:</strong> ${historyData.total_sessions}</p>
-          <div style="margin-top: 1rem;">${sessionsHTML}</div>
+          <div class="mb-6">
+            <div class="bg-gradient-to-r from-indigo-500 to-purple-600 text-white rounded-2xl p-4 text-center">
+              <div class="text-2xl font-bold mb-1">${historyData.total_sessions}</div>
+              <div class="text-sm opacity-90">Total Sessions</div>
+            </div>
+          </div>
+          <div class="space-y-4">
+            ${sessionsHTML}
+          </div>
         `;
         
       } catch (error) {
         console.error('Error loading history:', error);
-        content.innerHTML = `<div class="error">Error loading history: ${error.message}</div>`;
+        content.innerHTML = `
+          <div class="text-center py-12">
+            <div class="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-4">
+              <i class="fas fa-exclamation-triangle text-red-500 text-2xl"></i>
+            </div>
+            <h3 class="text-lg font-semibold text-red-700 mb-2">Error Loading History</h3>
+            <p class="text-red-600">${error.message}</p>
+          </div>
+        `;
       }
     }
 
     // Function to close history modal
     function closeHistoryModal() {
-      document.getElementById('history-modal').classList.remove('active');
+      document.getElementById('history-modal').classList.add('hidden');
     }
 
     // Close modal when clicking outside
@@ -756,6 +732,145 @@
 
     // Load data when page loads
     document.addEventListener('DOMContentLoaded', loadWorkoutData);
+
+    // PWA Service Worker Registration
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/sw.js')
+          .then(registration => {
+            console.log('SW registered: ', registration);
+          })
+          .catch(registrationError => {
+            console.log('SW registration failed: ', registrationError);
+          });
+      });
+    }
+
+    // Add install prompt for PWA
+    let deferredPrompt;
+    window.addEventListener('beforeinstallprompt', (e) => {
+      e.preventDefault();
+      deferredPrompt = e;
+      
+      // Show install banner
+      const installBanner = document.createElement('div');
+      installBanner.className = 'fixed bottom-4 left-4 right-4 bg-white rounded-2xl p-4 shadow-2xl border border-gray-200 z-50';
+      installBanner.innerHTML = `
+        <div class="flex items-center justify-between">
+          <div class="flex items-center space-x-3">
+            <div class="w-10 h-10 bg-gradient-to-r from-indigo-500 to-purple-600 rounded-xl flex items-center justify-center">
+              <i class="fas fa-download text-white"></i>
+            </div>
+            <div>
+              <div class="text-sm font-semibold text-gray-800">Install GymFlow</div>
+              <div class="text-xs text-gray-600">Add to home screen for easy access</div>
+            </div>
+          </div>
+          <div class="flex space-x-2">
+            <button onclick="this.parentElement.parentElement.parentElement.remove()" class="text-gray-400 hover:text-gray-600 px-2 py-1">
+              <i class="fas fa-times"></i>
+            </button>
+            <button onclick="installApp()" class="bg-gradient-to-r from-indigo-500 to-purple-600 text-white px-3 py-1 rounded-lg text-sm font-semibold">
+              Install
+            </button>
+          </div>
+        </div>
+      `;
+      document.body.appendChild(installBanner);
+    });
+
+    // Install app function
+    function installApp() {
+      if (deferredPrompt) {
+        deferredPrompt.prompt();
+        deferredPrompt.userChoice.then((choiceResult) => {
+          if (choiceResult.outcome === 'accepted') {
+            console.log('User accepted the install prompt');
+          }
+          deferredPrompt = null;
+        });
+      }
+      // Remove banner
+      const banner = document.querySelector('.fixed.bottom-4');
+      if (banner) banner.remove();
+    }
+
+    // Handle mobile menu toggle (if needed for future features)
+    document.getElementById('menu-toggle')?.addEventListener('click', function() {
+      // Future mobile menu functionality
+    });
+
+    // Floating Action Button functionality
+    const fab = document.getElementById('fab');
+    const fabMenu = document.getElementById('fab-menu');
+    let fabOpen = false;
+
+    fab.addEventListener('click', () => {
+      fabOpen = !fabOpen;
+      if (fabOpen) {
+        fabMenu.classList.remove('opacity-0', 'pointer-events-none');
+        fabMenu.classList.add('opacity-100');
+        fab.innerHTML = '<i class="fas fa-times text-xl"></i>';
+        fab.style.transform = 'rotate(45deg)';
+      } else {
+        fabMenu.classList.add('opacity-0', 'pointer-events-none');
+        fabMenu.classList.remove('opacity-100');
+        fab.innerHTML = '<i class="fas fa-plus text-xl"></i>';
+        fab.style.transform = 'rotate(0deg)';
+      }
+    });
+
+    // Scroll to top function
+    function scrollToTop() {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+      // Close FAB menu
+      if (fabOpen) fab.click();
+    }
+
+    // Show/hide FAB based on scroll position
+    let lastScrollTop = 0;
+    window.addEventListener('scroll', () => {
+      const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+      
+      if (scrollTop > 200) {
+        fab.style.transform = 'scale(1)';
+        fab.style.opacity = '1';
+      } else {
+        fab.style.transform = 'scale(0.8)';
+        fab.style.opacity = '0.7';
+      }
+      
+      // Auto-close FAB menu on scroll
+      if (fabOpen && Math.abs(scrollTop - lastScrollTop) > 50) {
+        fab.click();
+      }
+      
+      lastScrollTop = scrollTop;
+    });
+
+    // Add pull-to-refresh functionality for mobile
+    let startY = 0;
+    let isRefreshing = false;
+
+    document.addEventListener('touchstart', (e) => {
+      startY = e.touches[0].pageY;
+    });
+
+    document.addEventListener('touchmove', (e) => {
+      const currentY = e.touches[0].pageY;
+      const pullDistance = currentY - startY;
+      
+      if (pullDistance > 100 && window.scrollY === 0 && !isRefreshing) {
+        isRefreshing = true;
+        showNotification('Refreshing workout data...', 'info');
+        loadWorkoutData().finally(() => {
+          isRefreshing = false;
+        });
+      }
+    });
   </script>
 </body>
 </html>
