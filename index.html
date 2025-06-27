@@ -97,6 +97,196 @@
       transform: translateX(4px);
     }
 
+    .exercise-actions {
+      display: flex;
+      gap: 0.5rem;
+      margin-top: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .action-btn {
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      color: white;
+      border: none;
+      padding: 0.5rem 1rem;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      text-decoration: none;
+      display: inline-block;
+      text-align: center;
+    }
+
+    .action-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+    }
+
+    .action-btn.secondary {
+      background: linear-gradient(135deg, #28a745, #20c997);
+    }
+
+    .action-btn.history {
+      background: linear-gradient(135deg, #fd7e14, #e83e8c);
+    }
+
+    .log-form {
+      background: #f8f9ff;
+      padding: 1rem;
+      border-radius: 10px;
+      margin-top: 1rem;
+      display: none;
+    }
+
+    .log-form.active {
+      display: block;
+    }
+
+    .form-row {
+      display: flex;
+      gap: 0.5rem;
+      margin-bottom: 0.5rem;
+      align-items: center;
+    }
+
+    .form-row input {
+      padding: 0.5rem;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      font-size: 0.9rem;
+      width: 80px;
+    }
+
+    .form-row label {
+      font-size: 0.8rem;
+      color: #666;
+      min-width: 50px;
+    }
+
+    .form-row textarea {
+      padding: 0.5rem;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      font-size: 0.9rem;
+      resize: vertical;
+      min-height: 60px;
+      flex: 1;
+    }
+
+    .form-actions {
+      display: flex;
+      gap: 0.5rem;
+      margin-top: 0.5rem;
+    }
+
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.5);
+      z-index: 1000;
+    }
+
+    .modal.active {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .modal-content {
+      background: white;
+      padding: 2rem;
+      border-radius: 15px;
+      max-width: 600px;
+      max-height: 80vh;
+      overflow-y: auto;
+      margin: 1rem;
+      position: relative;
+    }
+
+    .modal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid #eee;
+    }
+
+    .modal-title {
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: #333;
+    }
+
+    .close-btn {
+      background: none;
+      border: none;
+      font-size: 1.5rem;
+      cursor: pointer;
+      color: #666;
+      padding: 0;
+      width: 30px;
+      height: 30px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+    }
+
+    .close-btn:hover {
+      background: #f5f5f5;
+    }
+
+    .history-session {
+      background: #f8f9ff;
+      padding: 1rem;
+      border-radius: 10px;
+      margin-bottom: 1rem;
+      border-left: 4px solid #667eea;
+    }
+
+    .session-date {
+      font-weight: 600;
+      color: #333;
+      margin-bottom: 0.5rem;
+    }
+
+    .session-sets {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+      gap: 0.5rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .set-info {
+      background: white;
+      padding: 0.5rem;
+      border-radius: 8px;
+      text-align: center;
+      font-size: 0.8rem;
+    }
+
+    .session-notes {
+      font-style: italic;
+      color: #666;
+      font-size: 0.9rem;
+    }
+
+    .last-trained-info {
+      background: rgba(102, 126, 234, 0.1);
+      padding: 0.5rem;
+      border-radius: 8px;
+      margin-top: 0.5rem;
+      font-size: 0.85rem;
+      color: #667eea;
+    }
+
     .exercise-name {
       font-weight: 600;
       font-size: 1.1rem;
@@ -262,6 +452,19 @@
     <div id="workout-container"></div>
   </div>
 
+  <!-- History Modal -->
+  <div id="history-modal" class="modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <div class="modal-title" id="history-title">Exercise History</div>
+        <button class="close-btn" onclick="closeHistoryModal()">&times;</button>
+      </div>
+      <div id="history-content">
+        <div class="loading">Loading history...</div>
+      </div>
+    </div>
+  </div>
+
   <script>
     // Function to group exercises by day
     function groupExercisesByDay(exercises) {
@@ -283,6 +486,10 @@
 
     // Function to create exercise HTML
     function createExerciseHTML(exercise) {
+      const lastTrainedInfo = exercise.last_trained 
+        ? `Last trained: ${new Date(exercise.last_trained).toLocaleDateString()} (${exercise.last_sets_count} sets)`
+        : 'Never trained';
+      
       return `
         <div class="exercise-item">
           <div class="exercise-name">${exercise.exercise_name}</div>
@@ -297,6 +504,27 @@
             </div>
             <div class="detail-item">
               <a href="${exercise.exercise_link}" class="exercise-link" target="_blank">View Exercise</a>
+            </div>
+          </div>
+          <div class="last-trained-info">${lastTrainedInfo}</div>
+          <div class="exercise-actions">
+            <button class="action-btn" onclick="toggleLogForm('${exercise.id}')">Log Rep</button>
+            <button class="action-btn history" onclick="viewHistory('${exercise.id}')">View History</button>
+          </div>
+          <div class="log-form" id="log-form-${exercise.id}">
+            <div class="form-row">
+              <label>Reps:</label>
+              <input type="number" id="reps-${exercise.id}" placeholder="8" min="1" max="50">
+              <label>Weight (kg):</label>
+              <input type="number" id="weight-${exercise.id}" placeholder="50" min="0" step="0.5">
+            </div>
+            <div class="form-row">
+              <label>Notes:</label>
+              <textarea id="notes-${exercise.id}" placeholder="Optional notes..."></textarea>
+            </div>
+            <div class="form-actions">
+              <button class="action-btn" onclick="logSet('${exercise.id}')">Log Set</button>
+              <button class="action-btn secondary" onclick="toggleLogForm('${exercise.id}')">Cancel</button>
             </div>
           </div>
         </div>
@@ -384,6 +612,147 @@
         errorDiv.style.display = 'block';
       }
     }
+
+    // Function to toggle log form visibility
+    function toggleLogForm(exerciseId) {
+      const logForm = document.getElementById(`log-form-${exerciseId}`);
+      logForm.classList.toggle('active');
+    }
+
+    // Function to log a set
+    async function logSet(exerciseId) {
+      const repsInput = document.getElementById(`reps-${exerciseId}`);
+      const weightInput = document.getElementById(`weight-${exerciseId}`);
+      const notesInput = document.getElementById(`notes-${exerciseId}`);
+      
+      const reps = parseInt(repsInput.value);
+      const weight = parseFloat(weightInput.value) || 0;
+      const notes = notesInput.value.trim();
+      
+      if (!reps || reps < 1) {
+        alert('Please enter a valid number of reps (1 or more)');
+        return;
+      }
+      
+      try {
+        const response = await fetch('https://yazan-gym-api.dialakattan22.workers.dev/training/log', {
+          method: 'POST',
+          headers: {
+            'Authorization': 'Bearer yazan-gym-2025-secure-token',
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            exercise_id: exerciseId,
+            sets: [{ reps: reps, weight_kg: weight }],
+            date: new Date().toISOString(),
+            notes: notes,
+            user_id: 'yazan'
+          })
+        });
+        
+        if (!response.ok) {
+          const errorData = await response.json().catch(() => ({ error: 'Unknown error' }));
+          throw new Error(errorData.error || `HTTP error! status: ${response.status}`);
+        }
+        
+        const result = await response.json();
+        console.log('Set logged successfully:', result);
+        
+        // Clear form
+        repsInput.value = '';
+        weightInput.value = '';
+        notesInput.value = '';
+        
+        // Hide form
+        toggleLogForm(exerciseId);
+        
+        // Show success message
+        alert('Set logged successfully! 💪');
+        
+        // Reload workout data to update last trained info
+        loadWorkoutData();
+        
+      } catch (error) {
+        console.error('Error logging set:', error);
+        alert(`Error logging set: ${error.message}`);
+      }
+    }
+
+    // Function to view exercise history
+    async function viewHistory(exerciseId) {
+      const modal = document.getElementById('history-modal');
+      const title = document.getElementById('history-title');
+      const content = document.getElementById('history-content');
+      
+      modal.classList.add('active');
+      title.textContent = 'Exercise History';
+      content.innerHTML = '<div class="loading">Loading history...</div>';
+      
+      try {
+        const response = await fetch(`https://yazan-gym-api.dialakattan22.workers.dev/training/history?exercise_id=${exerciseId}&user_id=yazan&token=yazan-gym-2025-secure-token`);
+        
+        if (!response.ok) {
+          const errorData = await response.json().catch(() => ({ error: 'Unknown error' }));
+          throw new Error(errorData.error || `HTTP error! status: ${response.status}`);
+        }
+        
+        const historyData = await response.json();
+        console.log('History data:', historyData);
+        
+        title.textContent = `${historyData.exercise_info.exercise_name} History`;
+        
+        if (historyData.total_sessions === 0) {
+          content.innerHTML = '<p>No training sessions recorded for this exercise yet.</p>';
+          return;
+        }
+        
+        const sessionsHTML = historyData.sessions.map(session => {
+          const sessionDate = new Date(session.date).toLocaleDateString('en-US', {
+            weekday: 'long',
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric'
+          });
+          
+          const setsHTML = session.sets.map(set => `
+            <div class="set-info">
+              Set ${set.set_number}<br>
+              ${set.reps} reps<br>
+              ${set.weight_kg}kg
+            </div>
+          `).join('');
+          
+          return `
+            <div class="history-session">
+              <div class="session-date">${sessionDate}</div>
+              <div class="session-sets">${setsHTML}</div>
+              ${session.notes ? `<div class="session-notes">"${session.notes}"</div>` : ''}
+            </div>
+          `;
+        }).join('');
+        
+        content.innerHTML = `
+          <p><strong>Total Sessions:</strong> ${historyData.total_sessions}</p>
+          <div style="margin-top: 1rem;">${sessionsHTML}</div>
+        `;
+        
+      } catch (error) {
+        console.error('Error loading history:', error);
+        content.innerHTML = `<div class="error">Error loading history: ${error.message}</div>`;
+      }
+    }
+
+    // Function to close history modal
+    function closeHistoryModal() {
+      document.getElementById('history-modal').classList.remove('active');
+    }
+
+    // Close modal when clicking outside
+    document.getElementById('history-modal').addEventListener('click', function(e) {
+      if (e.target === this) {
+        closeHistoryModal();
+      }
+    });
 
     // Load data when page loads
     document.addEventListener('DOMContentLoaded', loadWorkoutData);
