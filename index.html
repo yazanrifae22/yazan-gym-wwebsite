@@ -558,7 +558,7 @@
                   class="ml-2 w-8 h-8 bg-red-500 hover:bg-red-600 rounded-full flex items-center justify-center text-white transition-colors duration-300"
                   title="Watch exercise video"
                 >
-                  <i class="fas fa-play text-xs"></i>
+                  <i class="fas fa-play text-2xl ml-1"></i>
                 </button>
               </h3>
               <div class="grid grid-cols-2 gap-4 mb-4">
@@ -823,13 +823,19 @@
                 <i class="fas fa-expand text-xl"></i>
               </button>
             </div>
+            <div class="mb-4 flex justify-center">
+              <button onclick="window.open('${exercise.exercise_link}', '_blank')" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-xl font-semibold flex items-center gap-2 shadow transition-all duration-300">
+                <i class="fas fa-link"></i>
+                Open Exercise Link
+              </button>
+            </div>
             <div id="inline-video-${exercise.id}" class="bg-black rounded-xl overflow-hidden mb-4">
               <div class="aspect-video flex items-center justify-center bg-gray-800 relative group">
                 <!-- Background preview (if available) -->
                 <div id="video-preview-${exercise.id}" class="absolute inset-0 opacity-20"></div>
                 
                 <!-- Play button -->
-                <button onclick="showExerciseVideo('${exercise.exercise_name}', '${exercise.exercise_link}')" class="bg-red-500 hover:bg-red-600 w-16 h-16 rounded-full flex items-center justify-center text-white transition-all duration-300 hover:scale-110 group-hover:shadow-lg relative z-10">
+                <button onclick="showExerciseVideo('${exercise.exercise_name}', '${exercise.exercise_link}')" class="bg-red-500 hover:bg-red-600 w-16 h-16 rounded-full flex items-center justify-center text-white transition-colors duration-300 hover:scale-110 group-hover:shadow-lg relative z-10">
                   <i class="fas fa-play text-2xl ml-1"></i>
                 </button>
                 
@@ -1221,9 +1227,8 @@
     function getMuscleWikiVideoUrl(exerciseUrl) {
       try {
         const urlParts = exerciseUrl.split('/').filter(Boolean);
-        
-        let gender, equipment, exerciseName;
-        
+        let gender, equipment, exerciseName, id;
+
         for (let i = 0; i < urlParts.length; i++) {
           if (urlParts[i] === 'male' || urlParts[i] === 'female') {
             gender = urlParts[i];
@@ -1232,27 +1237,37 @@
             break;
           }
         }
-        
-        if (!gender || !equipment || !exerciseName) {
-          console.log('Could not parse URL parts:', { gender, equipment, exerciseName, urlParts });
-          return { front: null, side: null };
+
+        // Exception mapping for known MuscleWiki video id differences
+        const idExceptions = {
+          'seated-db-overhead-press': 'dumbbell-seated-overhead-press',
+          'dumbbell-lateral-raise': 'dumbbell-lateral-raise',
+          'rope-triceps-pushdown': 'cable-rope-pushdown',
+          'dumbbell-triceps-kickback': 'dumbbell-tricep-kickback',
+          'dumbbell-front-raise': 'dumbbell-front-raise',
+        };
+
+        id = exerciseName;
+        if (idExceptions[id]) {
+          id = idExceptions[id];
         }
-        
-        if (exerciseName.startsWith(equipment + '-')) {
-          exerciseName = exerciseName.substring(equipment.length + 1);
-        }
-        
+
+        // Always use 'Dumbbell' for any dumbbell exercise
+        let equipmentCap = equipment.charAt(0).toUpperCase() + equipment.slice(1).toLowerCase();
+        if (equipment.toLowerCase().includes('dumbbell')) equipmentCap = 'Dumbbell';
+        if (equipment.toLowerCase().includes('barbell')) equipmentCap = 'Barbell';
+        if (equipment.toLowerCase().includes('cable')) equipmentCap = 'Cable';
+        if (equipment.toLowerCase().includes('machine')) equipmentCap = 'Machine';
+        if (equipment.toLowerCase().includes('bodyweight')) equipmentCap = 'Bodyweight';
+
         const baseVideoUrl = 'https://media.musclewiki.com/media/uploads/videos/branded/';
-        const frontUrl = `${baseVideoUrl}${gender}-${equipment}-${exerciseName}-front.mp4`;
-        const sideUrl = `${baseVideoUrl}${gender}-${equipment}-${exerciseName}-side.mp4`;
-        
-        console.log('Generated video URLs:', { frontUrl, sideUrl });
-        
+        const frontUrl = `${baseVideoUrl}${gender}-${equipmentCap}-${id}-front.mp4`;
+        const sideUrl = `${baseVideoUrl}${gender}-${equipmentCap}-${id}-side.mp4`;
+
         return {
           front: frontUrl,
           side: sideUrl
         };
-        
       } catch (error) {
         console.error('Error in getMuscleWikiVideoUrl:', error);
         return { front: null, side: null };
